@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <title>Movie Recommendation</title>
+    <style>
+        form {
+            text-align: center;
+        }
+
+        label {
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 30px;
+        }
+
+        input {
+            padding: 5px;
+        }
+
+        #reviewInput {
+            padding: 50px;
+            padding-left: 30px;
+            padding-right: 30px;
+        }
+
+        button {
+            padding-top: 10px;
+            padding-bottom: 10px;
+            border-radius: 20px;
+        }
+
+        #recDiv {
+            margin: auto;
+            width: 50%;
+            padding: 10px;
+        }
+
+        #userInDiv{
+            border: 1px solid black;
+            border-radius: 20px;
+            margin: auto;
+            width: 60%;
+            padding: 10px;
+        }
+        nav{
+            border: 1px solid black;
+            background-color: rgb(55, 70, 204);
+            text-align: center;
+            font-family: 'Courier New', Courier, monospace;
+        }
+        table{
+            font-family: 'Courier New', Courier, monospace;
+        }
+    </style>
+</head>
+
+<nav>
+    <h1>Movie Recommendations</h1>
+    
+</nav>
+
+<body onload="loadRecs();">
+    <div id="userInDiv">
+        <form>
+            <label for="">Reviewer</label><br>
+            <input type="text" name="" id="reviewerIn"><br>
+            <label for="">Movie Name</label><br>
+            <input type="text" name="" id="movieIn"><br>
+            <label for="">Release Year</label><br>
+            <input type="text" name="" id="rsIn"><br>
+            <label for="">Publisher</label><br>
+            <input type="text" name="" id="publisherIn"><br>
+            <label for="">Review</label><br>
+            <input type="text" name="" id="reviewInput"><br>
+            <button onclick="addRec()">Submit Review</button>
+        </form>
+    </div>
+
+    <div id="recDiv">
+        <h2>Recommendations</h2>
+        <p id="recommendations"></p>
+    </div>
+
+    <script>
+
+        function addRec(){
+            var reviewerInput = document.getElementById("reviewerIn").value;
+            var movieInput = document.getElementById("movieIn").value;
+            var rsInput = document.getElementById("rsIn").value;
+            var publisherInput = document.getElementById("publisherIn").value;
+            var reviewInput = document.getElementById("revieweIn").value;
+            $ajax({
+              
+                url: 'submitRec',
+                method : 'POST',
+                success: (function(data){
+
+                })
+            });
+        }
+        function loadRecs() {
+            $.ajax({
+                url: '/data', method: 'GET',
+                success: function (data) {
+                    let text = "<table border='1'><tr><th>Reviewer</th><th>Movie Name</th><th>Year of Release</th><th>Review</th></tr>";
+                    data.forEach(function (rec) {
+                        text += `<tr>
+                            <td>  ${rec.reviewer} </td>
+                            <td> ${rec.MovieName} </td>
+                            <td> ${rec.relaseYear} </td>
+                            <td> ${rec.review} </td>
+                            <td><button>Delete</button></td>
+                            </tr>`;
+                    });
+                    document.getElementById("recommendations").innerHTML = text;
+                },
+                error: function (err) {
+                    console.error('Error fetching data', err);
+                }
+            });
+        }
+
+
+    </script>
+</body>
+
+</html>

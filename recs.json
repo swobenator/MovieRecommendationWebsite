@@ -1,0 +1,26 @@
+[
+    {
+        "reviewer": "Jimmy Changa",
+        "MovieName": "Wolf of Wall Street",
+        "relaseYear": "2014",
+        "review": "This Movie is Great"
+    },
+    {
+        "reviewer": "Hugh Janus",
+        "MovieName": "White Chicks",
+        "relaseYear": "2005",
+        "review": "Really bad movie"
+    },
+    {
+        "reviewer": "Bogdan Jim",
+        "MovieName": "Trolls",
+        "relaseYear": "2018",
+        "review": "Very good movie enjoyed it from start to finish"
+    },
+    {
+        "reviewer": "hoe",
+        "MovieName": "Trs",
+        "relaseYear": "2012",
+        "review": "Very good movie enjoyed it from start to finish"
+    }
+]
