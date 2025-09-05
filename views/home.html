@@ -1,131 +1,78 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" style="zoom: 80%">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
+    <link rel="stylesheet" href="style.css">
+
     <title>Movie Recommendation</title>
-    <style>
-        form {
-            text-align: center;
-        }
 
-        label {
-            font-family: 'Courier New', Courier, monospace;
-            font-size: 30px;
-        }
+    <script src="main.js"></script>
 
-        input {
-            padding: 5px;
-        }
-
-        #reviewInput {
-            padding: 50px;
-            padding-left: 30px;
-            padding-right: 30px;
-        }
-
-        button {
-            padding-top: 10px;
-            padding-bottom: 10px;
-            border-radius: 20px;
-        }
-
-        #recDiv {
-            margin: auto;
-            width: 50%;
-            padding: 10px;
-        }
-
-        #userInDiv{
-            border: 1px solid black;
-            border-radius: 20px;
-            margin: auto;
-            width: 60%;
-            padding: 10px;
-        }
-        nav{
-            border: 1px solid black;
-            background-color: rgb(55, 70, 204);
-            text-align: center;
-            font-family: 'Courier New', Courier, monospace;
-        }
-        table{
-            font-family: 'Courier New', Courier, monospace;
-        }
-    </style>
 </head>
 
 <nav>
     <h1>Movie Recommendations</h1>
-    
+    <a href="home.html">Home</a>
+    <a href="/graph">Graphs</a>
 </nav>
 
-<body onload="loadRecs();">
-    <div id="userInDiv">
-        <form>
-            <label for="">Reviewer</label><br>
-            <input type="text" name="" id="reviewerIn"><br>
-            <label for="">Movie Name</label><br>
-            <input type="text" name="" id="movieIn"><br>
-            <label for="">Release Year</label><br>
-            <input type="text" name="" id="rsIn"><br>
+<!--code for background color used in the body tag-->
+<!--Source for the code: https://codepen.io/joshyporkchops/pen/JxGyZp-->
+<!--Original Code: <body style="background-color:#556;
+background-image: linear-gradient(30deg, #445 12%, transparent 12.5%, transparent 87%, #445 87.5%, #445),
+linear-gradient(150deg, #445 12%, transparent 12.5%, transparent 87%, #445 87.5%, #445),
+linear-gradient(30deg, #445 12%, transparent 12.5%, transparent 87%, #445 87.5%, #445),
+linear-gradient(150deg, #445 12%, transparent 12.5%, transparent 87%, #445 87.5%, #445),
+linear-gradient(60deg, #99a 25%, transparent 25.5%, transparent 75%, #99a 75%, #99a),
+linear-gradient(60deg, #99a 25%, transparent 25.5%, transparent 75%, #99a 75%, #99a);
+background-size:80px 140px;
+background-position: 0 0, 0 0, 40px 70px, 40px 70px, 0 0, 40px 70px;">
+</body>-->
+<!--Added by: Bogdan Postolachi-->
+<body onload="loadRecs();" style="background-color:#556;
+background-image: linear-gradient(30deg, #445 12%, transparent 12.5%, transparent 87%, #445 87.5%, #445),
+linear-gradient(150deg, #445 12%, transparent 12.5%, transparent 87%, #445 87.5%, #445),
+linear-gradient(30deg, #445 12%, transparent 12.5%, transparent 87%, #445 87.5%, #445),
+linear-gradient(150deg, #445 12%, transparent 12.5%, transparent 87%, #445 87.5%, #445),
+linear-gradient(60deg, #99a 25%, transparent 25.5%, transparent 75%, #99a 75%, #99a),
+linear-gradient(60deg, #99a 25%, transparent 25.5%, transparent 75%, #99a 75%, #99a);
+background-size:80px 140px;
+background-position: 0 0, 0 0, 40px 70px, 40px 70px, 0 0, 40px 70px;">
+
+    <br>
+
+    <div id="addRecDiv">
+        <form onsubmit="return false;">
+            <h2>Add Recommendation</h2>
+            <label for="">Reviewer</label>
+            <input type="text" name="" id="reviewerIn"><br><br>
+            <label for="">Movie Name</label>
+            <input type="text" name="" id="movieIn"><br><br>
+            <label for="">Release Year</label>
+            <input type="number" min="1950" max="2026" id="rsIn"><br><br>
             <label for="">Publisher</label><br>
-            <input type="text" name="" id="publisherIn"><br>
+            <input type="text" name="" id="publisherIn"><br><br>
+            <label for="">Rating</label>
+            <input type="number" min="0" max="10" id="ratingIn"><br><br><br>
             <label for="">Review</label><br>
-            <input type="text" name="" id="reviewInput"><br>
-            <button onclick="addRec()">Submit Review</button>
+            <input type="text" name="" id="reviewIn"><br><br><br>
+            <button onclick="addRec()" id="addBtn">Add Recommendation</button>
         </form>
     </div>
 
+    <div id="editRecDiv" hidden>
+
+    </div>
+
     <div id="recDiv">
-        <h2>Recommendations</h2>
+        <h2 id="title">Recommendations</h2>
         <p id="recommendations"></p>
     </div>
 
-    <script>
-
-        function addRec(){
-            var reviewerInput = document.getElementById("reviewerIn").value;
-            var movieInput = document.getElementById("movieIn").value;
-            var rsInput = document.getElementById("rsIn").value;
-            var publisherInput = document.getElementById("publisherIn").value;
-            var reviewInput = document.getElementById("revieweIn").value;
-            $ajax({
-              
-                url: 'submitRec',
-                method : 'POST',
-                success: (function(data){
-
-                })
-            });
-        }
-        function loadRecs() {
-            $.ajax({
-                url: '/data', method: 'GET',
-                success: function (data) {
-                    let text = "<table border='1'><tr><th>Reviewer</th><th>Movie Name</th><th>Year of Release</th><th>Review</th></tr>";
-                    data.forEach(function (rec) {
-                        text += `<tr>
-                            <td>  ${rec.reviewer} </td>
-                            <td> ${rec.MovieName} </td>
-                            <td> ${rec.relaseYear} </td>
-                            <td> ${rec.review} </td>
-                            <td><button>Delete</button></td>
-                            </tr>`;
-                    });
-                    document.getElementById("recommendations").innerHTML = text;
-                },
-                error: function (err) {
-                    console.error('Error fetching data', err);
-                }
-            });
-        }
-
-
-    </script>
 </body>
 
 </html>

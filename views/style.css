@@ -1,0 +1,340 @@
+/*Author: Bogdan Postolachi*/
+
+body, h1, h3, h4, p, label { /*targets these specific tags*/
+    font-family:'Courier New', Courier, monospace; /*choesen font*/
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+
+#title{
+    text-align: center;
+    font-family:'Courier New', Courier, monospace;
+    background-color: white;
+    border: 2px solid black;
+    border-radius: 30px;
+    padding: 10px;
+    margin: 20px auto;
+    width: fit-content;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s ease-in-out; /*transition effect*/
+}
+
+
+#title:hover {
+    transform: scale(1.05); /*scale up on hover*/
+}
+
+body {
+      background-position: center;
+      font-size: 16px;
+      font-family: 'Courier New', Courier, monospace;
+      margin: 0; /*removes any margin around the body */
+      padding: 0;
+   }
+
+
+
+
+ /*Navigation Bar*/
+nav {
+    background: linear-gradient(to right, #445, #99a);
+    color: white;
+    padding: 20px;
+    font-size: 20px;
+    font-family:'Courier New', Courier, monospace;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    transition: all 0.3s ease-in-out;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/*Navigation Bar Shadow Effect on Scroll*/
+nav.scrolled {
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
+    background: linear-gradient(to right, #333, #666);
+    transition: background 0.3s, box-shadow 0.3s;
+}
+
+/*Navigation Links*/
+nav a {
+    font-family:'Courier New', Courier, monospace;
+    font-size: 18px;
+    color: white;
+    text-decoration: none;
+    margin: 0 15px;
+    position: relative;
+    transition: color 0.3s ease, transform 0.3s;
+}
+
+nav a:hover {
+    color: #00D4FF;
+    transform: translateY(-2px);
+}
+
+/*Gradient Underline Effect*/
+nav a::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -5px;
+    width: 0%;
+    height: 2px;
+    background: linear-gradient(90deg, #00D4FF, #007BFF);
+    transition: width 0.3s ease-in-out;
+}
+
+nav {
+    border: 1px solid black;
+    background-color: rgb(55, 70, 204);
+    text-align: center;
+    font-family:  'Courier New', Courier, monospace;
+}
+
+nav a:hover::after {
+    width: 100%;
+}
+
+/*Navigation Bar Title*/
+nav h1 {
+    font-family:'Courier New', Courier, monospace;
+    font-size: 28px;
+    margin: 0;
+    color: #fff;
+    transition: transform 0.3s ease-in-out;
+    font-weight: bold;
+}
+
+nav h1:hover {
+    transform: rotate(-3deg) scale(1.1);
+}
+
+
+
+h2 {
+    font-size: 30px;
+    font-family:  'Courier New', Courier, monospace;
+    
+}
+
+ul {
+    border: 10px solid black;
+    border-style: groove;
+    background-image: linear-gradient(to right, rgb(114, 114, 119) , rgb(255, 255, 255));
+    font-family: 'Courier New', Courier, monospace;
+}
+
+a {
+    font-size: 40px;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+p{
+    text-align: center;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+
+
+
+
+form{
+    text-align: center;
+    font-family:  'Courier New', Courier, monospace;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+
+form:hover {
+    transform: translateY(-20px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+}
+
+label {
+    font-family:  'Courier New', Courier, monospace;
+    font-size: 20px;
+    margin-bottom: 5px;
+    display: block;
+    color: #333;
+    font-weight: bold;
+    transition: color 0.3s ease;
+
+}
+
+label:hover {
+    color: #007BFF;
+}
+
+
+input {
+    padding: 5px;
+    border-radius: 10px;
+    font-size: 20px;
+}
+
+#reviewInput {
+    padding: 50px;
+    padding-left: 30px;
+    padding-right: 30px;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+
+
+
+button {
+    padding: 10px 20px;
+    background-color: #9db7d3;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 20px;
+    font-family:  'Courier New', Courier, monospace;
+    transition: color 0.3s ease, transform 0.3s;
+    border: 2px solid black;
+}
+
+button:hover{
+    background-color: #00D4FF;
+    color: #97bce3;
+    transform: rotate(-3deg) scale(1.1);
+   
+}
+
+
+
+
+#recommendations{ 
+   
+    /*code taken from body tag in the html*/
+    /*separated recomandation boxes*/
+    background-color:#556;
+    background-image: linear-gradient(30deg, #445 12%, transparent 12.5%, transparent 87%, #445 87.5%, #445),
+    linear-gradient(150deg, #445 12%, transparent 12.5%, transparent 87%, #445 87.5%, #445),
+    linear-gradient(30deg, #445 12%, transparent 12.5%, transparent 87%, #445 87.5%, #445),
+    linear-gradient(150deg, #445 12%, transparent 12.5%, transparent 87%, #445 87.5%, #445),
+    linear-gradient(60deg, #99a 25%, transparent 25.5%, transparent 75%, #99a 75%, #99a),
+    linear-gradient(60deg, #99a 25%, transparent 25.5%, transparent 75%, #99a 75%, #99a); 
+    background-size:80px 140px;
+    background-position: 0 0, 0 0, 40px 70px, 40px 70px, 0 0, 40px 70px; 
+
+    font-family:  'Courier New', Courier, monospace;
+    
+}
+
+
+#recDiv {
+    margin: 0  auto;
+    width: 50%;
+    padding: 0px;
+    font-family: 'Courier New', Courier, monospace;
+    border-radius: 15px;
+    
+}
+
+
+
+.recDiv {
+   
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.recDiv:hover {
+    transform: translateY(-10px);
+    /*box-shadow: 0 8px 106px rgba(0, 0, 0, 0.3);*/
+}
+
+
+#recDiv h2 {
+    font-size: 30px; /*larger font size for headings */
+    font-weight: bold;
+    color: #3a5677; /*subtle blue-gray color */
+    margin-bottom: 5px;
+    text-transform: capitalize; /*capitalize titles */
+    font-family: 'Courier New', Courier, monospace;
+ 
+}
+
+p{
+    font-size: 18px;
+    margin: 10px 0;
+    color: #555; 
+    line-height: 1.5;
+}
+
+
+#recDiv h3, h4{
+    font-size: 25px; 
+    color: #000000; 
+    margin-bottom: 10px;
+    text-transform: capitalize; 
+    font-family: 'Courier New', Courier, monospace; 
+}
+
+#addRecDiv {
+    border: 5px solid rgba(42, 43, 44, 0.8);
+    border-radius: 15px;
+    margin: auto;
+    width: 80%;
+    max-width: 800px;
+    padding: 20px;
+    background: linear-gradient(135deg, #fff, #f8f8f8);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    font-family: 'Courier New', Courier, monospace;
+    animation: fadeIn 1s ease-in-out;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+#addRecDiv:hover {
+    transform: scale(1.02);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+}
+
+#editRecDiv {
+    border: 5px solid rgba(168, 163, 172, 0.8);
+    background: linear-gradient(135deg, #d9e0e7, #a4b8cc);
+    border-radius: 15px;
+    margin: auto;
+    width: 80%;
+    max-width: 800px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    font-family: 'Courier New', Courier, monospace;
+    animation: slideIn 1s ease-in-out;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+#editRecDiv:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+}
+
+#barChart {
+    position: relative;
+    width: 80%;
+    margin: auto;
+}
+
+#pieChart{
+    position: relative;
+    width: 50%;
+    margin: auto;
+}
+
+#reviewIn {
+    padding: 30px;
+}
+
+#editReviewIn {
+    padding: 30px;
+}
+
+
+h1{
+    text-align: center;
+}
